@@ -336,7 +336,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                               URLString:(NSString *)URLString
                                                              parameters:(nullable id)parameters
                                                                 success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                                                                failure:(nullable void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                                                                failure:(nullable void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 @end
 
