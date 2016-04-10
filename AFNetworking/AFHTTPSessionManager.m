@@ -250,19 +250,6 @@
     return dataTask;
 }
 
-- (NSURLSessionDataTask *)HTTPRequestOperationWithHTTPMethod:(NSString *)method
-                                                              URLString:(NSString *)URLString
-                                                             parameters:(nullable id)parameters
-                                                                success:(nullable void (^)(NSURLSessionDataTask *operation, id responseObject))success
-                                                                failure:(nullable void (^)(NSURLSessionDataTask *operation, NSError *error))failure;
-{
-    NSURLSessionDataTask *dataTask = [self dataTaskWithHTTPMethod:method URLString:URLString parameters:parameters uploadProgress:nil downloadProgress:nil success:success failure:failure];
-    
-    [dataTask resume];
-    
-    return dataTask;
-}
-
 - (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(NSString *)method
                                        URLString:(NSString *)URLString
                                       parameters:(id)parameters

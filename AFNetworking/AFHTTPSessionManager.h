@@ -291,21 +291,24 @@ NS_ASSUME_NONNULL_BEGIN
                          failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
 
 /**
- --jota change--
- Creates and runs an `AFHTTPRequestOperation` with the specified method.
+ Creates and runs an `NSURLSessionDataTask` with the specified method.
  
  @param URLString The URL string used to create the request URL.
  @param parameters The parameters to be encoded according to the client request serializer.
+ @param uploadProgress A block object to be executed when the download progress is updated. Note this block is called on the session queue, not the main queue.
+ @param downloadProgress A block object to be executed when the upload progress is updated. Note this block is called on the session queue, not the main queue.
  @param success A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the request operation, and the response object created by the client response serializer.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the request operation and the error describing the network or parsing error that occurred.
  
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
-- (nullable NSURLSessionDataTask *)HTTPRequestOperationWithHTTPMethod:(NSString *)method
-                                                              URLString:(NSString *)URLString
-                                                             parameters:(nullable id)parameters
-                                                                success:(nullable void (^)(NSURLSessionDataTask *operation, id responseObject))success
-                                                                failure:(nullable void (^)(NSURLSessionDataTask *operation, NSError *error))failure;
+- (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(NSString *)method
+                                       URLString:(NSString *)URLString
+                                      parameters:(id)parameters
+                                  uploadProgress:(nullable void (^)(NSProgress *uploadProgress)) uploadProgress
+                                downloadProgress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgress
+                                         success:(void (^)(NSURLSessionDataTask *, id))success
+                                         failure:(void (^)(NSURLSessionDataTask *, NSError *))failure;
 
 
 @end
